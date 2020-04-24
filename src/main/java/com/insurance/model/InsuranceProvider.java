@@ -15,11 +15,17 @@ public class InsuranceProvider {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long planId;
     
-    @Column(name = "insurance_policy_name", nullable = false)
-    private String insurancePolicyName;
+    @Column(name = "insurance_provider_name", nullable = false)
+    private String insuranceProviderName;
 
+    @Column(name = "plan_name", nullable = false)
+    private String planName;
+    
+    @Column(name = "insurance_type", nullable = false)
+    private String insuranceType;
+    
     @Column(name = "from_age", nullable = false)
     private int fromAge;
     
@@ -29,26 +35,39 @@ public class InsuranceProvider {
     @Column(name = "insurance_validity", nullable = false)
     private int insuranceValidity;
     
-    @Column(name = "insurance_type", nullable = false)
-    private String insuranceType;
-    
     @Column(name = "insurance_amount", nullable = false)
     private int insuranceAmount;
 
-	public long getId() {
-		return id;
+	public long getPlanId() {
+		return planId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setPlanId(long planId) {
+		this.planId = planId;
 	}
 
-	public String getInsurancePolicyName() {
-		return insurancePolicyName;
+	public String getInsuranceProviderName() {
+		return insuranceProviderName;
 	}
 
-	public void setInsurancePolicyName(String insurancePolicyName) {
-		this.insurancePolicyName = insurancePolicyName;
+	public void setInsuranceProviderName(String insuranceProviderName) {
+		this.insuranceProviderName = insuranceProviderName;
+	}
+
+	public String getPlanName() {
+		return planName;
+	}
+
+	public void setPlanName(String planName) {
+		this.planName = planName;
+	}
+
+	public String getInsuranceType() {
+		return insuranceType;
+	}
+
+	public void setInsuranceType(String insuranceType) {
+		this.insuranceType = insuranceType;
 	}
 
 	public int getFromAge() {
@@ -75,14 +94,6 @@ public class InsuranceProvider {
 		this.insuranceValidity = insuranceValidity;
 	}
 
-	public String getInsuranceType() {
-		return insuranceType;
-	}
-
-	public void setInsuranceType(String insuranceType) {
-		this.insuranceType = insuranceType;
-	}
-
 	public int getInsuranceAmount() {
 		return insuranceAmount;
 	}
@@ -91,15 +102,23 @@ public class InsuranceProvider {
 		this.insuranceAmount = insuranceAmount;
 	}
 
-	public InsuranceProvider(long id, String insurancePolicyName, int fromAge, int uptoAge, int insuranceValidity,
-			String insuranceType, int insuranceAmount) {
+	@Override
+	public String toString() {
+		return "InsuranceProvider [planId=" + planId + ", insuranceProviderName=" + insuranceProviderName
+				+ ", planName=" + planName + ", insuranceType=" + insuranceType + ", fromAge=" + fromAge + ", uptoAge="
+				+ uptoAge + ", insuranceValidity=" + insuranceValidity + ", insuranceAmount=" + insuranceAmount + "]";
+	}
+
+	public InsuranceProvider(long planId, String insuranceProviderName, String planName, String insuranceType,
+			int fromAge, int uptoAge, int insuranceValidity, int insuranceAmount) {
 		super();
-		this.id = id;
-		this.insurancePolicyName = insurancePolicyName;
+		this.planId = planId;
+		this.insuranceProviderName = insuranceProviderName;
+		this.planName = planName;
+		this.insuranceType = insuranceType;
 		this.fromAge = fromAge;
 		this.uptoAge = uptoAge;
 		this.insuranceValidity = insuranceValidity;
-		this.insuranceType = insuranceType;
 		this.insuranceAmount = insuranceAmount;
 	}
 
@@ -108,16 +127,7 @@ public class InsuranceProvider {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "InsuranceProvider [id=" + id + ", insurancePolicyName=" + insurancePolicyName + ", fromAge=" + fromAge
-				+ ", uptoAge=" + uptoAge + ", insuranceValidity=" + insuranceValidity + ", insuranceType="
-				+ insuranceType + ", insuranceAmount=" + insuranceAmount + "]";
-	}
-
-
-    
-
+  
 
   
 }

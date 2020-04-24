@@ -89,10 +89,12 @@ public class InsuranceProviderController {
 			  insuranceProviderService
             .getPlanById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Insurance Provider not found on :: " + id));
+	  
+	  insuranceProvider.setInsuranceProviderName(insuranceProviderDetails.getInsuranceProviderName());
+	  insuranceProvider.setPlanName(insuranceProviderDetails.getPlanName());
 	  insuranceProvider.setInsuranceValidity(insuranceProviderDetails.getInsuranceValidity());
 	  insuranceProvider.setUptoAge(insuranceProviderDetails.getUptoAge());
 	  insuranceProvider.setFromAge(insuranceProviderDetails.getFromAge());
-	  insuranceProvider.setInsurancePolicyName(insuranceProviderDetails.getInsurancePolicyName());
 	  insuranceProvider.setInsuranceType(insuranceProviderDetails.getInsuranceType());
 	  insuranceProvider.setInsuranceAmount(insuranceProviderDetails.getInsuranceAmount());
     final InsuranceProvider updatedInsuranceProvider = insuranceProviderService.update(insuranceProvider);
