@@ -2,9 +2,9 @@
 This is the insurance provider application that will be used by the Policy Aggregator application for Rest Web Service Calls.
 
 
-Database Name - aggregatordatabase
+Database Name - insuranceproviderdatabase
 
-Table Name - insurance_providers_list
+Table Name - insurance_provider_policies
 
 use the below command to insert data into the table
 
