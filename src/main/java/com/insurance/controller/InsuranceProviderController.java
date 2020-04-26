@@ -20,22 +20,35 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/api/v1")
 public class InsuranceProviderController {
 
- // @Autowired
-  //private InsuranceProviderRepository insuranceProviderRepository;
-  
+
   @Autowired
   private InsuranceProviderService insuranceProviderService;
 
   @GetMapping("/insuranceProviders")
   public List<InsuranceProvider> getAllInsuranceProviders() {
 	  return insuranceProviderService.getAllPlan();
-    //return insuranceProviderRepository.findAll();
+  }
+  
+  @GetMapping("/insuranceProviders/filter/{filter}")
+  public <T> List<InsuranceProvider> getInsuranceProvidersByFilter(@PathVariable(value = "filter") T filter)
+  {
+	  
+	  String value;
+      value=(String) filter;
+      	    
+      List<InsuranceProvider> filteredList =
+  				 insuranceProviderService
+  	            .getPlanByType(value);
+  	            //.orElseThrow(() -> new ResourceNotFoundException("Insurance Of Type "+value+" Not Found "));
+      	return filteredList;
+	  
   }
 
 
@@ -65,6 +78,7 @@ public class InsuranceProviderController {
 	  
   }
 
+  
   @PostMapping("/insuranceProviders")
   public InsuranceProvider createInsuranceProvider(@Valid @RequestBody InsuranceProvider insuranceProvider) {
     //return insuranceProviderRepository.save(insuranceProvider);

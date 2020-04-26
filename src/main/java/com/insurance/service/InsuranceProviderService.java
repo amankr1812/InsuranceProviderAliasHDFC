@@ -1,5 +1,6 @@
 package com.insurance.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,24 @@ public class InsuranceProviderService {
 	
 	public Optional<InsuranceProvider> getPlanById(Long id) {
 		return insuranceProviderRepository.findById(id);
+	}
+	
+	public List<InsuranceProvider> getPlanByType(String filter) {
+		List<InsuranceProvider> list = new ArrayList<>();
+		if(filter.equalsIgnoreCase("all")){
+			list=getAllPlan();
+		}
+		else {
+		for(InsuranceProvider ins:getAllPlan()) {
+			String temp=ins.getInsuranceType().toLowerCase(); // life, health, vehicle(4 wheeler, 2 wheeler) etc
+			if(temp.contains(filter)) {
+				list.add(ins);
+			}
+		}
+		}
+		
+		
+		return list;
 	}
 	
 	public InsuranceProvider createInsuranceProvider(InsuranceProvider insuranceProvider) {
